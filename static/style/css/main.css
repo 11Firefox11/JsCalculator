@@ -5,7 +5,12 @@
   box-sizing: border-box;
   font-family: "Montserrat";
   user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   user-drag: none;
+  -webkit-user-drag: none;
 }
 
 html {
@@ -83,7 +88,6 @@ main #inner #top #curr {
   float: right;
   text-align: right;
   font-weight: bolder;
-  text-wrap: unrestricted;
 }
 main #inner #top #curr::selection {
   background-color: #456990;
@@ -104,11 +108,12 @@ main #inner #top .scrollbar::-webkit-scrollbar {
 main #inner #top .scrollbar::-webkit-scrollbar-thumb {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #456990;
+  background-color: #E59500;
 }
 main #inner #bottom {
   height: 72%;
   padding-top: 0.8rem;
+  padding-bottom: 0.25rem;
   background-color: transparent;
   display: grid;
   grid-auto-columns: 1fr;
@@ -205,8 +210,8 @@ main #inner #bottom button.action:last-child:active {
 }
 @media screen and (max-width: 28rem) {
   main {
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% !important;
     resize: none;
   }
 }
