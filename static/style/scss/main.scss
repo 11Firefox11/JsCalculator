@@ -59,6 +59,33 @@ body {
     overflow: hidden;
 }
 
+nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    p {
+        padding: 0.1rem 0.2rem;
+        background-color: #000808;
+        display: inline-block;
+        font-size: 0.85rem;
+        color: white;
+        font-weight: bold;
+        a {
+            text-decoration-color: #ffffff75;
+            color: white;
+        }
+        a:nth-child(1) {
+            color: def.$color-blue;
+        }
+        a:nth-child(2) {
+            color: def.$color-orange;
+        }
+        a:nth-child(3) {
+            color: def.$color-red;
+        }
+    }
+}
+
 main {
     background-color: transparent;
     min-width: 21.9375rem;

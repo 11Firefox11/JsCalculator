@@ -10,7 +10,7 @@ window.fontsizecurr = window.toptext.style.fontSize;
 
 window.main = document.querySelector("main");
 window.defmainsize = [window.main.clientWidth, window.main.clientHeight];
-window.commandsdict = {"109&shift|189&shift":15, "188|108|190":16, "46":11 ,"8":12, "111":13.2, "13|Enter":14, "106":13.3, "109":13.4, "107":13.5};
+window.commandsdict = {"109&shift|189&shift":15, "106|189&alt":13.3, "188|108|190":16, "46|8&shift":11 ,"+8":12, "53&shift":13.1, "111|54&shift":13.2, "13|Enter":14, "109|189":13.4, "107|51&shift":13.5};
 for (i=0;i<10;i++) {
     window.commandsdict[`${96+i}|${48+i}`] = i;
 }
@@ -41,12 +41,22 @@ function Calculate() {
         window.current = window.previouscurr;
         window.current[0] = num;
     }
-    actions = {"/":"divide", "*":"multiply", "-":"subtract", "+":"add"}
-    twonums = [window.current[0].replace(",", "."), window.current[2].replace(",", ".")]
+    actions = {"/":"divide", "*":"multiply", "-":"subtract", "+":"add"};
+    twonums = [window.current[0].replace(",", "."), window.current[2].replace(",", ".")];
+    for (x=0; x < twonums.length; x++) {
+        if (String(twonums[x]).includes("e")) {
+            twonums[x] = ConvertEtypeNum(twonums[x]);
+        }
+    }
     window.previouscurr = window.current;
-    num = BignumToStr(eval(`new BigNumber(${twonums[0]}).${actions[window.current[1]]}(${twonums[1]})`)).replace(".", ",");
-    window.current = [num];
-    window.nextdissapear = true;
+    num = BignumToStr(eval(`new BigNumber('${twonums[0]}').${actions[window.current[1]]}('${twonums[1]}')`));
+    if (!num) {
+        ErrorTop();
+        DeleteCurrent();
+    } else {
+        window.current = [num.replace(".", ",")];
+        window.nextdissapear = true;
+    }
 }
 
 function AddAction(code) {
@@ -64,6 +74,9 @@ function AddAction(code) {
 function CountOnePercent() {
     currnum = window.current[GetTheLastNumberIndex()];
     if (currnum != 0) {
+        if (String(currnum).includes("e")) {
+            currnum = ConvertEtypeNum(currnum);
+        }
         num = BignumToStr(new BigNumber(currnum.replace(",", ".")).multiply(0.01)).replace(".", ",")
         if (num[num.length-1] == ",") {
             num = num.slice(0,num.length-1);
@@ -86,7 +99,17 @@ function InsertNumber(num) {
 function DisplayNumber() {
     currnum = window.current[GetTheLastNumberIndex()];
     if (window.toptext.value != currnum) {
-        window.toptext.value = MakeNumberReadable(window.current[GetTheLastNumberIndex()]);
+        num = window.current[GetTheLastNumberIndex()]
+        if (String(Number(num)).includes("e")) {
+            num = String(Number(num)).split("e");
+            num[0] = MakeNumberReadable(num[0].replace(".", ","));
+            window.toptext.value = num.join("e");
+        } else if (String(Number(num)) == "Infinity") {
+            window.toptext.value = "Infinity";
+            DeleteCurrent();
+        } else {
+            window.toptext.value = MakeNumberReadable(num);
+        }
     }
     CheckDisplayOverflow();
 }
@@ -161,7 +184,7 @@ function AddFloat() {
 
 function ToggleNumberMinus() {
     currnum = window.current[GetTheLastNumberIndex()];
-    if (currnum[0] != "0") {
+    if (Number(currnum) != 0) {
         if (currnum[0] == "-") {
             toset = currnum.substring(1);
         } else {
@@ -182,7 +205,7 @@ function BignumToStr(bignum) {
     }
     num = bignum["_d"].join("");
     if (num.includes(".")) {
-        num = +parseFloat(num).toFixed(10);
+        num = parseFloat(num);
         return String(num).replace(".", ",");
     }
     return num;
@@ -204,6 +227,15 @@ function DeleteCurrent() {
         window.current = ["0"];
     }
     window.previouscurr = false;
+}
+
+function ConvertEtypeNum(num) {
+    num = String(num).split("e");
+    if (num[1].includes("-")) {
+        return "0." + "0".repeat(Number(num[1].slice(1))-1) + String(num[0]).replace(".", "");
+    } else {
+        return String(num[0]).replace(".", "") + "0".repeat(Number(num[1].slice(1))-num[0].length+2);
+    }
 }
 
 function ScanIfPhone() {
