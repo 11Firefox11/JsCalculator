@@ -1,10 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat");
-$mainfont: "Montserrat";
-
-$color-blackish: #001011;
-$color-blue: #456990;
-$color-orange: #E59500;
-$color-red: #FF6663;
+@use './def' as def;
 
 @mixin flex-top {
     display: block;
@@ -24,7 +18,7 @@ $color-red: #FF6663;
     &::-webkit-scrollbar-thumb {
         border-radius: 10px;
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-        background-color: $color-orange;
+        background-color: def.$color-orange;
     }
 }
 
@@ -38,7 +32,7 @@ $color-red: #FF6663;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: $mainfont;
+    font-family: def.$mainfont;
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -61,7 +55,7 @@ body {
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: $color-blackish;
+    background-color: def.$color-blackish;
     overflow: hidden;
 }
 
@@ -90,7 +84,7 @@ main {
         #top {
             height: 25%;
             background-color: #00101180;
-            border: 0.15rem solid $color-blue;
+            border: 0.15rem solid def.$color-blue;
             margin-bottom: 3%;
             border-radius: 0.8rem;
             display: flex;
@@ -116,7 +110,7 @@ main {
                 text-align: right;
                 font-weight: bolder;
                 &::selection {
-                    background-color: $color-blue;
+                    background-color: def.$color-blue;
                 }
                 &:hover, &:active, &:focus {
                     border: none;
@@ -164,29 +158,29 @@ main {
                     transform: scale(1.04);
                 }
                 &:active {
-                    @include onactive(white, $color-blue);
+                    @include onactive(white, def.$color-blue);
                 }
                 &.action {
                     font-size: 2.55rem;
                     font-weight: bolder;
-                    color: $color-orange;
+                    color: def.$color-orange;
                     &:active {
-                        @include onactive($color-orange, $color-blue);
+                        @include onactive(def.$color-orange, def.$color-blue);
                     }
                     &:first-child, &:nth-child(2) {
-                        color: $color-red;
+                        color: def.$color-red;
                         &:active {
-                            @include onactive($color-red, $color-blue);
+                            @include onactive(def.$color-red, def.$color-blue);
                         }
                     }
                     &:nth-child(2) {
                         font-size: 2.1rem;
                     }
                     &:last-child {
-                        background-color: $color-orange;
+                        background-color: def.$color-orange;
                         color: white;
                         &:active {
-                            @include onactive(white, $color-orange);
+                            @include onactive(white, def.$color-orange);
                         }
                     }
                 }
@@ -196,12 +190,12 @@ main {
 }
 
 @keyframes errorTop {
-    0% { transform: translate(0.1rem, 0.1rem) rotate(0deg); border-color: $color-red;}
+    0% { transform: translate(0.1rem, 0.1rem) rotate(0deg); border-color: def.$color-red;}
     20% { transform: translate(-0.2rem, 0rem) rotate(1deg); }
-    40% { transform: translate(0.1rem, -0.2rem) rotate(1.8deg); border-color: $color-red;}
-    60% { transform: translate(0.25rem, 0.1rem) rotate(0.2deg); border-color: $color-red;}
-    80% { transform: translate(-0.1rem, -0.1rem) rotate(1.3deg); border-color: $color-red;}
-    100% { transform: translate(0.05rem, -0.15rem) rotate(-1.3deg); border-color: $color-red;}
+    40% { transform: translate(0.1rem, -0.2rem) rotate(1.8deg); border-color: def.$color-red;}
+    60% { transform: translate(0.25rem, 0.1rem) rotate(0.2deg); border-color: def.$color-red;}
+    80% { transform: translate(-0.1rem, -0.1rem) rotate(1.3deg); border-color: def.$color-red;}
+    100% { transform: translate(0.05rem, -0.15rem) rotate(-1.3deg); border-color: def.$color-red;}
 }
 
 @keyframes fadeIn {

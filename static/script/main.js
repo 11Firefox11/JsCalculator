@@ -3,14 +3,14 @@ window.previouscurr = false;
 window.maxnumlength = 12;
 window.nextdissapear = false;
 
-window.codedict = {11:"DeleteCurrent", 12:"DeleteFromCurrNum", 15:"ToggleNumberMinus", 16:"AddFloat", 14:"Calculate", 13.1:"CountOnePercent"}
+window.codedict = {11:"DeleteCurrent", 12:"DeleteFromCurrNum", 15:"ToggleNumberMinus", 16:"AddFloat", 14:"Calculate", 13.1:"CountOnePercent"};
 
 window.toptext = document.querySelector("#curr");
 window.fontsizecurr = window.toptext.style.fontSize;
 
 window.main = document.querySelector("main");
 window.defmainsize = [window.main.clientWidth, window.main.clientHeight];
-window.commandsdict = {"109&shift|189&shift":15, "188|108|190":16, "46":11 ,"8":12, "111":13.2, "13|Enter":14, "106":13.3, "109":13.4, "107":13.5}
+window.commandsdict = {"109&shift|189&shift":15, "188|108|190":16, "46":11 ,"8":12, "111":13.2, "13|Enter":14, "106":13.3, "109":13.4, "107":13.5};
 for (i=0;i<10;i++) {
     window.commandsdict[`${96+i}|${48+i}`] = i;
 }
@@ -234,11 +234,11 @@ function KeyPress(e) {
                 key[k] = key[k].split("&");
                 if (eobj.keyCode == key[k][0] && eval(`eobj.${key[k][1]}Key`)) {
                     was = true;
-                    break
+                    break;
                 }
             } else if (eobj.keyCode == key[k]) {
                 was = true;
-                break
+                break;
             }
         }
         if (was) {
@@ -259,7 +259,7 @@ function SetSizesToTop(sizestoset) {
 function CheckResize() {
     sizes = [window.main.clientWidth, window.main.clientHeight];
     tofull = [document.body.clientWidth, document.body.clientHeight];
-    sides = ["width", "height"]
+    sides = ["width", "height"];
     for (i in sides) {
         if (sizes[i] == tofull[i]) {
             if (`window.main.style.${sides[i]}` != "100%") {
