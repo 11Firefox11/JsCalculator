@@ -240,9 +240,10 @@ function ConvertEtypeNum(num) {
 
 function ScanIfPhone() {
     ua = navigator.userAgent;
-    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) && (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua))) {
+    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) || (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua))) {
         window.main.classList.add("phone");
-    }
+    } 
+    // https://abdessalam.dev/blog/detect-device-type-javascript/
 };
 
 function ErrorTop() {
@@ -309,6 +310,6 @@ function CheckResize() {
     CheckDisplayOverflow();
 }
 
-document.onload = ScanIfPhone();DisplayNumber();
+ScanIfPhone();DisplayNumber();
 document.onkeydown = KeyPress;
 new ResizeObserver(CheckResize).observe(window.main);

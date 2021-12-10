@@ -1,13 +1,19 @@
 <h1 align="center" id="title">Számológép</h1>
 <h4 align="center">Egyszerű, letisztul, reszponszív számológép javascriptben</h4>
   
-Sima egyszerű számológép, alap funkciókkal ellátva, letisztult user interface-el, minden funkció megtalálható benne ami megtalálható egy alap számológépben.    
-A [figma design tervek](design.png) szerint a számológép még ennél is komplikáltabb lett volna, ellenben végül is ez lett a végleges verzió, hiszen tökéletesen ellátja ez is a dolgát.  
-Úgy lett felépítve az oldal, hogy a számológép reszponszív legyen, illetve még annak nagyságát is lehessen állítani. Ha a felhasználó telefonról tölti be az oldalt akkor ő is egy szép, telefonra méretezett oldalt fog látni, ez a UserAgent átvizsgálása alapján történik. Ha esetlegesen szükség van két soros szám megjelenítésére, akkor ezt autómatikusan érzékeli a script, majd átállítja a fő megjelenítő elemet kétsorosra.  
-A számológép a legelső művelettől kezdve, mindig elmenti az előző műveletet, hogy lehessen újra és újra azt lehívni anélkül, hogy mindig a felhasználónak be kéne írnia (ez sima számológépeknél is így van).  
-A számológépben az egyetlen nagyobb nehézséget a [`Floating-Point Arithmetic`](https://floating-point-gui.de/) jelentette. Példaképp a `0,1 + 0,2` eredménye ugyanis `0.30000000000000004` ez az eredmény helytelen. Erre a problémára egy tökéletes megoldást találtam, mégpedig a [bignumber.js](http://jsfromhell.com/classes/bignumber)-t. Ez a script elősegíti a probléma kiküszöbölését, nagyon sokat köszönhetek neki.  
-A számológép úgy lett leprogramozva, hogy könnyen bővíthető legyen, ugyanis a történések nagyrésze kódok alapján megy. Példaképp az `1`-es kód hozzáad egy egyest a jelenlegi számunk végére, a `14`-es kód pedig a jelenlegi műveleteket végrehajtja.  
-A számológép irányítható billenytűkombinációkkal, ennek kivitelezése a kód rendszer alapján szinte már gyerekjáték volt.  
+Sima egyszerű számológép, alap funkciókkal ellátva, letisztult user interface-el, szemnek kellemes színekkel (![#001011](https://via.placeholder.com/15/001011/000000?text=+), ![#456990](https://via.placeholder.com/15/456990/000000?text=+), ![#E59500](https://via.placeholder.com/15/E59500/000000?text=+), ![#FF6663](https://via.placeholder.com/15/FF6663/000000?text=+)), minden funkció megtalálható benne ami egy alap számológépben.  
+
+## Funkciók
+### Responzív, "okos" design
+Úgy lett felépítve az oldal, hogy a számológép reszponszív legyen, illetve még annak nagyságát is lehessen állítani. Amikor a számológép szélessége és/vagy magassága eléri a teljesen kitölthető területet, akkor ha a böngésző újra lesz méretezve, a számológép teljesen ki fogja tölteni a területet (főképp gépen/laptopon jellemző). Ha a felhasználó telefonról tölti be az oldalt akkor ő is egy szép, telefonra méretezett oldalt fog látni. Ha esetlegesen szükség van két soros szám megjelenítésére, akkor ezt automatikusan érzékeli, majd átállítja a fő megjelenítő elemet két sorosra.  
+### Előző művelet
+A számológép a legelső művelettől kezdve, mindig elmenti az előző műveletet, hogy lehessen újra és újra azt lehívni anélkül, hogy mindig a felhasználónak be kéne írnia azt újra, meg újra. Ez a lementett előző művelet kitörlődik a teljes törlés folyamán.
+### Precíz számok  
+A számológépben az egyetlen nagyobb nehézséget a [`Floating-Point Arithmetic`](https://floating-point-gui.de/) jelentette. Példaképp a `0,1 + 0,2` eredménye ugyanis `0.30000000000000004` a számítógépek "nyelvében" és ez az eredmény helytelen. Erre a problémára egy tökéletes megoldást találtam, mégpedig a [bignumber.js](http://jsfromhell.com/classes/bignumber)-t. Ez a script elősegíti a probléma kiküszöbölését, nagyon sokat köszönhetek neki, más megoldást ami ugyanilyen precizitást biztosít ugyanis nem tudtam kivitelezni. 
+### Bővíthetőség   
+A számológép úgy lett leprogramozva, hogy könnyen bővíthető legyen, ugyanis a történések nagyrészt kódok alapján megy. Példaképp az `1`-es kód hozzáad egy egyest a jelenlegi számunk végére, a `14`-es kód pedig a jelenlegi műveleteket végrehajtja.  
+### Billentyűkombinációk
+A számológép irányítható billenytűkombinációkkal, ami az alábbi táblázatban jól is látszódik.
 
 ---
   
