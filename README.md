@@ -1,4 +1,4 @@
-<h1 align="center" id="title">Számológép</h1>
+<h1 align="center" id="title">Számológép - <a href="https://11firefox11.github.io/JsCalculator/templates/index.html" target="_blank">GITHUB PAGES</a></h1>
 <h4 align="center">Egyszerű, letisztul, reszponszív számológép javascriptben</h4>
   
 Sima egyszerű számológép, alap funkciókkal ellátva, letisztult user interface-el, szemnek kellemes színekkel (![#001011](https://via.placeholder.com/15/001011/000000?text=+), ![#456990](https://via.placeholder.com/15/456990/000000?text=+), ![#E59500](https://via.placeholder.com/15/E59500/000000?text=+), ![#FF6663](https://via.placeholder.com/15/FF6663/000000?text=+)), minden funkció megtalálható benne ami egy alap számológépben.  
